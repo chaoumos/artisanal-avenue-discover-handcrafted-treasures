@@ -1,0 +1,43 @@
+---
+export interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const siteOwner = "Artisanal Avenue: Discover Handcrafted Treasures";
+const pageTitle = title ? `${title} | ${siteOwner}` : siteOwner;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased">
+    <header class="py-4 px-2 md:px-6 bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="/" class="text-2xl font-bold text-teal-600 dark:text-teal-400 hover:opacity-80 transition-opacity">{siteOwner}</a>
+        <nav class="space-x-4">
+          <a href="/" class="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Home</a>
+          <a href="/shop/" class="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Shop</a>
+          <a href="/artisans/" class="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Artisans</a>
+          <a href="/blog/" class="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">Blog</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container mx-auto p-4 md:p-6 min-h-[calc(100vh-150px)]">
+      <slot />
+    </main>
+    <footer class="bg-white dark:bg-gray-800 py-6">
+      <div class="container mx-auto px-4 text-center">
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+          &copy; {new Date().getFullYear()} {siteOwner}. All rights reserved.
+        </p>
+        <div class="mt-4">
+          <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 mx-2">Terms of Service</a>
+          <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 mx-2">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
